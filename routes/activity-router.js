@@ -1,5 +1,5 @@
 import express from "express"
-import {getAllActivities} from "../controllers/activity-controller.js"
+import {createActivity, getAllActivities} from "../controllers/activity-controller.js"
 
 export const activityRouter = express.Router()
 
@@ -7,4 +7,7 @@ export const activityRouter = express.Router()
 
 activityRouter.route('/')
 	.get(getAllActivities)
+
+activityRouter.route('/create')
+	.post(createActivity)
 	
