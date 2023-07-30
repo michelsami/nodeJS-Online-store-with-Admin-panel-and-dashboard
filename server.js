@@ -2,7 +2,6 @@ import express from "express"
 import dotenv from "dotenv"
 import cors from "cors"
 
-
 import {activityRouter} from "./routes/activity-router.js"
 import { connectionDB } from "./config/database-connection.js"
 
