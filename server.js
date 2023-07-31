@@ -1,24 +1,22 @@
-import express from 'express'
-import dotenv from "dotenv"
-import cors from "cors"
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import { router as userRouter } from "./routes/authRouter.js";
+import { activityRouter } from "./routes/activity-router.js";
+import { connectionDB } from "./config/database-connection.js";
 
-import {activityRouter} from "./routes/activity-router.js"
-import { connectionDB } from "./config/database-connection.js"
+dotenv.config();
 
-
-
-dotenv.config()
-
-connectionDB()
+connectionDB();
 const port = process.env.PORT;
-const app = express()
-app.use(express.json())
-app.use(cors())
+const app = express();
+app.use(express.json());
+app.use(cors());
 
-app.use('/activity', activityRouter)
+app.use("/activity", activityRouter);
 
+app.use("/users", userRouter);
 
-
-app.listen(port, ()=>{
-	console.log(`listining to localHost port ${port}`)
-})
+app.listen(port, () => {
+  console.log(`listining to localHost port ${port}`);
+});
