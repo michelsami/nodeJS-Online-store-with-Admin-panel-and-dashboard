@@ -2,6 +2,15 @@ import mongoose from "mongoose";
 
 
 const activitySchema = mongoose.Schema({
+	googleId: {
+		type: String,
+		required: false,
+		unique: true
+	},
+	displayName: {
+		type: String,
+		required: false
+	},
 	title:{
 		type: String,
 		trim: true,
