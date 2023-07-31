@@ -9,7 +9,7 @@ googleRouter.post('/auth/google', async (req, res) => {
 
       // Exchange the authorization code for an access token
       const tokenResponse = await axios.post('https://oauth2.googleapis.com/token', {
-        code,
+        code : "4/0AZEOvhVTBBDuAkZ5k4Htr2rjJAn6ZD1E1OIGpvZY04owbnfdv70La31lJn6WAq5pkT-fKA",
         client_id: '221943485788-s6k663ttk54344l6t0e9291pjmlctjmb.apps.googleusercontent.com',
         client_secret: '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',
         redirect_uri: 'http://localhost:4400/auth/google',
