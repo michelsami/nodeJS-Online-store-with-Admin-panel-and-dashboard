@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/activity", activityRouter);
 
 app.use("/users", userRouter);
-app.use("/" , googleRouter)
+app.use("/auth/google" , googleRouter)
 app.listen(port, () => {
   console.log(`listining to localHost port ${port}`);
 });
