@@ -9,6 +9,11 @@ const activitySchema = mongoose.Schema({
 		minlength: [3, "Activity title is too short"],
 		maxlength: [50, "Activity title is too long"]
 	}, 
+	price:{
+		type: Number,
+		trim: true,
+		required: [true, "Price is required"],
+	}, 
 	description: {
 		type: String,
 		required: [true, 'Please enter a description for the activity'],

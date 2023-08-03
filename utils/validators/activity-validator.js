@@ -8,6 +8,7 @@ import { providerModel } from '../../models/provider-model.js';
 const objectIdRegex = /^[0-9a-fA-F]{24}$/;
 const createActivitySchema = zod.object({
 	title: zod.string().min(2).max(50),
+	price: zod.number().positive(),
 	description: zod.string().min(10).max(500),
 	date: zod.date(),
 	locationCity: zod.string().min(1).max(100),
