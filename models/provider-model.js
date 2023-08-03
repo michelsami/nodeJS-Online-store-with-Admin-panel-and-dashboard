@@ -5,7 +5,7 @@ const providerSchema = mongoose.Schema({
 	lastName : {type : String , required : true},
     email : {type : String , required : true , unique : true},
     password : {type : String , required : true},
-    roles : {type : Array, default: 'provider'},
+    roles : {type : String, default: 'provider'},
 	contactNumber: {type: String , default : ""},
 	profilePicture: {type: String , default : ""}
 }

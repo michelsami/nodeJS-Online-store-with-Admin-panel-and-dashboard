@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { validregister } from '../utils/validators/providers.js'
+import { validregister  , validlogin } from '../utils/validators/providers.js'
 import {creatNewProvider , loginProvider} from '../controllers/providers.js'
 
 
@@ -18,4 +18,4 @@ const checkRoles = (role) => (req, res, next) => {
 export const provRouter = Router();
 
 provRouter.post("/register" , [validregister , creatNewProvider])
-provRouter.post("/login" , loginProvider)
+provRouter.post("/login" , [validlogin , loginProvider])

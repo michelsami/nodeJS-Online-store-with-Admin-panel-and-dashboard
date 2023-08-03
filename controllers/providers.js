@@ -14,7 +14,7 @@ export const creatNewProvider = async (req , res) => {
     const user = await createUser(body);
     if(user == undefined) { return res.status(500).send("server error")}
     if(user == 400) { return res.status(400).json({error : "email already used before"})}
-    return res.status(201).json({success : true});
+    return res.status(201).json({success : true , body : body});
 }
 
 export const loginProvider = async (req , res) => {
@@ -25,6 +25,10 @@ export const loginProvider = async (req , res) => {
     if (user[0].email == undefined) { return res.status(404).send("sign up first")}
     const token = jwt.sign({user} , process.env.JWT_PASS )
     return res.status(200).json({...user , token})
+}
+
+export const assignNewAdmin = async (req , res) => {
+    
 }
 
 
