@@ -1,23 +1,14 @@
-
-
 import mongoose from "mongoose";
 
-
 const providerSchema = mongoose.Schema({
-	firstName:{
-		type: String,
-		trim: true,
-		required: [true, "First name is required"],
-		minlength: [3, "First name is too short"],
-		maxlength: [50, "First name is too long"]
-	}
-	
-	}, {
-	  timestamps: true,
-	}
-	
-
+	firstName : {type : String , required : true},
+	lastName : {type : String , required : true},
+    email : {type : String , required : true , unique : true},
+    password : {type : String , required : true},
+    roles : {type : String, default: 'provider'},
+	contactNumber: {type: String , default : ""},
+	profilePicture: {type: String , default : ""}
+}
 );
 
-
-export const providerModel =  mongoose.model('provider', providerSchema);
+export const providerModel =  mongoose.model('provider', providerSchema , "providers");
