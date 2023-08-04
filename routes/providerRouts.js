@@ -10,7 +10,7 @@ const checkRoles = (role) => (req, res, next) => {
         .status(403)
         .json({ status: "error", message: "Unautharized" });
   
-    if (!(req.user.user[0].roles == role))
+    if (req.user.user[0].roles !== role)
       return res.status(403).json({ status: "error", message: "UnAuthorized" });
   
     next();
@@ -20,4 +20,4 @@ export const provRouter = Router();
 
 provRouter.post("/register" , [validregister , creatNewProvider])
 provRouter.post("/login" , [validlogin , loginProvider])
-provRouter.patch("/:id" , [valid_token , assignNewAdmin])
+provRouter.patch("/:id" , [valid_token , checkRoles('owner') , assignNewAdmin])
