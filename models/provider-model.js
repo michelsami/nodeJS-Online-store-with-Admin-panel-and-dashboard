@@ -7,7 +7,9 @@ const providerSchema = mongoose.Schema({
     password : {type : String , required : true},
     roles : {type : String, default: 'provider'},
 	contactNumber: {type: String , default : ""},
-	profilePicture: {type: String , default : ""}
+	profilePicture: {type: String , default : ""},
+	ban : {type : Boolean , default : false},
+	active : {type : Boolean , default : false}, 
 }
 );
 

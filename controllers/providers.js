@@ -24,7 +24,20 @@ export const loginProvider = async (req , res) => {
     if(user.length == 0 ){ return res.status(404).send("sign up first")}
     if (user[0].email == undefined) { return res.status(404).send("sign up first")}
     const token = jwt.sign({user} , process.env.JWT_PASS )
+    await providerModel.updateOne( {_id : user[0].id} , {$set : {active : true}});
     return res.status(200).json({...user , token})
+}
+
+export const logout = async (req , res) => {
+    const id_params = req.params.id ;
+    const id_token = req.user.user[0]._id;
+    if (id_params !== id_token) return res.status(400).json({status : false})
+    try {
+        await providerModel.updateOne( {_id : id_token} , {$set : {active : false}});
+        return res.status(200).json({status : "logged out"})
+    } catch (error) {
+        return res.status(500).send("server error")
+    }
 }
 
 export const assignNewAdmin = async (req , res) => {
@@ -33,7 +46,18 @@ export const assignNewAdmin = async (req , res) => {
         if(!result.acknowledged){return res.status(400).send("bad request")}
         return res.status(200).send("updated");
     } catch (error) {
-        console.log(error.message);
+        return res.status(500).send("server error")
+    }
+}
+
+export const updateProviderDataByAdmin = async (req , res) => {
+    const query = req.body ; 
+    const id = req.params.id ; 
+    try {
+        const result = await providerModel.updateOne({_id : id} , {$set : query})
+        if(!result.acknowledged){return res.status(400).send("bad request")}
+        return res.status(200).send("updated");
+    } catch (error) {
         return res.status(500).send("server error")
     }
 }
