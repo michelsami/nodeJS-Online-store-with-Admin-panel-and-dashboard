@@ -83,3 +83,18 @@ const loginSchema = z.object({
         res.status(400).json(JSON.parse(error.message));
     }
 };
+
+const adminUpdateSchema = z.object({
+  firstName : z.string().optional(),
+  lastName : z.string().optional(),
+  ban : z.boolean().optional(),
+})
+
+export const validAdminUpdate = (req, res, next) => {
+  try {
+      req.body = adminUpdateSchema.parse(req.body);
+      next();
+  } catch (error) {
+      res.status(400).json(JSON.parse(error.message));
+  }
+};
