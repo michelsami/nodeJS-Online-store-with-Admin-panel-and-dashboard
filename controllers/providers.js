@@ -28,7 +28,14 @@ export const loginProvider = async (req , res) => {
 }
 
 export const assignNewAdmin = async (req , res) => {
-    
+    try {
+        const result = await providerModel.updateOne( {_id : req.params.id} , {$set : {roles : "admin"}});
+        if(!result.acknowledged){return res.status(400).send("bad request")}
+        return res.status(200).send("updated");
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).send("server error")
+    }
 }
 
 
