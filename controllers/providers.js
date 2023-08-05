@@ -97,17 +97,16 @@ export const deleteProvider = async (req,res) => {
 }
 
 export const ActiveUsers = async (req , res) => {
-    // try {
-    //     let page = Number(req.query.page||"1");
-    //     let per_page = Number(req.query.per_page||"10");
-    //     if(page == 0) page = 1;
-    //     if (per_page == 0) per_page = 10; 
-    //     const doc = await providerModel.find({active : true}).skip(per_page * (page-1)).limit(per_page);
-    //     return res.status(200).json(doc);
-    // } catch (error) {
-    //     return res.status(500).send("server error")
-    // }
-    return res.status(200).json({message : "hiiiii"})
+    try {
+        let page = Number(req.query.page||"1");
+        let per_page = Number(req.query.per_page||"10");
+        if(page == 0) page = 1;
+        if (per_page == 0) per_page = 10; 
+        const doc = await providerModel.find({active : true}).count();
+        return res.status(200).json({active : doc});
+    } catch (error) {
+        return res.status(500).send("server error")
+    }
 }
 
 //helper functions 
