@@ -62,6 +62,53 @@ export const updateProviderDataByAdmin = async (req , res) => {
     }
 }
 
+export const getall = async (req , res) => {
+    try {
+        let page = Number(req.query.page||"1");
+        let per_page = Number(req.query.per_page||"10");
+        if(page == 0) page = 1;
+        if (per_page == 0) per_page = 10; 
+        const doc = await providerModel.find().skip(per_page * (page-1)).limit(per_page);
+        return res.status(200).json(doc);
+    } catch (error) {
+        return res.status(500).send("server error")
+    }
+}
+
+export const getById = async (req , res) => {
+    try {
+        const id = req.params.id;
+        const doc = await providerModel.find({_id : id});
+        return res.status(200).json(doc);
+    } catch (error) {
+        return res.status(500).send("server error")
+    }
+}
+
+export const deleteProvider = async (req,res) => {
+    try {
+        const id = req.params.id;
+        const doc = await providerModel.deleteOne({_id : id});
+        if(!doc.acknowledged){return res.status(400).send("bad request")}
+        return res.status(200).json({status : "deleted"});
+    } catch (error) {
+        return res.status(500).send("server error")
+    }
+}
+
+export const ActiveUsers = async (req , res) => {
+    // try {
+    //     let page = Number(req.query.page||"1");
+    //     let per_page = Number(req.query.per_page||"10");
+    //     if(page == 0) page = 1;
+    //     if (per_page == 0) per_page = 10; 
+    //     const doc = await providerModel.find({active : true}).skip(per_page * (page-1)).limit(per_page);
+    //     return res.status(200).json(doc);
+    // } catch (error) {
+    //     return res.status(500).send("server error")
+    // }
+    return res.status(200).json({message : "hiiiii"})
+}
 
 //helper functions 
 const createUser = async (obj) => {
