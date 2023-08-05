@@ -31,13 +31,6 @@ provRouter
     .patch("/newadmin/:id" , [valid_token , checkRoles('owner') , assignNewAdmin])
     .patch("/updateprovider/:id" , [valid_token , validAdminUpdate , checkRoles('admin') , updateProviderDataByAdmin])
     .get("/" ,  [valid_token , checkRoles('owner' , 'admin') , getall]) 
-    .get("/:id" , [valid_token , checkRoles('owner' , 'admin') , getById])
-    .delete("/:id" , [valid_token , checkRoles('admin') , deleteProvider])
-
-// provRouter
-//     .get("/activenow" , [valid_token , checkRoles('owner','admin') , ActiveUsers] )
-
-provRouter.get ('/activenow' , async (req , res) => {
-    return res.status(200).json({message : "hiiiii"})
-})
-        
+    .get("/unique/:id" , [valid_token , checkRoles('owner' , 'admin') , getById])
+    .delete("/unique/:id" , [valid_token , checkRoles('admin') , deleteProvider])
+    .get("/activenow" , [valid_token , checkRoles('owner','admin') , ActiveUsers])
