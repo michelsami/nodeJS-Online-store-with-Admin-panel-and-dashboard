@@ -15,5 +15,6 @@ googleRouter.get('/',
 googleRouter.get('/callback', 
     passport.authenticate('google', { 
         failureRedirect: 'http://localhost:5500/views/pages/login/login.html' , 
-        successRedirect : 'http://localhost:5500/views/pages/login/login.html' }));
+        successRedirect : 'http://localhost:5500/views/pages/activity-page/activity-page.html' })
+);
 
