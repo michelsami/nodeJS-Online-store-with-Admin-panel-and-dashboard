@@ -20,22 +20,22 @@ const activitySchema = mongoose.Schema({
 		trim: true,
 		maxlength: [500, 'Description cannot be more than 500 characters'],
 	  },
-	  shortDescription: {
+	shortDescription: {
 		type: String,
 		trim: true,
 		maxlength: [100, 'Short description cannot be more than 100 characters'],
 	  },
-	  date: {
+	date: {
 		type: Date,
 		required: [true, 'Please enter a date for the activity'],
 	  },
-	  locationCity: {
+	locationCity: {
 		type: String,
 		required: [true, 'Please enter a location for the activity'],
 		trim: true,
 		maxlength: [100, 'Location cannot be more than 100 characters'],
 	  },
-	  createdBy: {
+	createdBy: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'providers',
 		required: [true, 'Please specify the user who created the activity'],

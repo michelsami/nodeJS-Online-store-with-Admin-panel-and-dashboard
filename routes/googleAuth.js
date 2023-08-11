@@ -3,7 +3,7 @@ import  express  from 'express';
 import User from '../models/authModel.js'
 
 export const googleRouter = express.Router();
-googleRouter.post('/auth/google', async (req, res) => {
+googleRouter.post('/', async (req, res) => {
     try {
       const { code } = req.body;
 
