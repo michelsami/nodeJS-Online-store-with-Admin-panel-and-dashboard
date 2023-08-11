@@ -4,15 +4,6 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
-    googleId: {
-      type: String,
-      required: false,
-      unique: true
-    },
-    displayName: {
-      type: String,
-      required: false
-    },
     firstName: {
       type: String,
       require: true,
@@ -46,6 +37,7 @@ const userSchema = new Schema(
       type: String,
       require: true,
     },
+    token: [{ type: Object }],
     role: {
       type: String,
       enum: ["user", "admin"],
@@ -71,6 +63,23 @@ userSchema.method({
   },
 });
 
-
 const User = mongoose.model("User", userSchema);
 export default User;
+
+
+// export const logoutModel = async (req, res, callback)=>{
+//   let sess = req.session.user
+//   if(sess){
+//     return callback(null, {'success': true, "message": "user logout successfully"});
+//   }
+//   callback(null, {'success': true, "message": "user logout successfully"});
+// }
+
+// logout.prototype.logoutUser = function(req, res, callback){
+//   var sess = req.session.user;
+//   if(sess){
+//       req.session.user = null;
+//       return callback(null, {'success': true, "message": "user logout successfully"});
+//   }
+//   callback(null, {'success': true, "message": "user logout successfully"});
+// }
