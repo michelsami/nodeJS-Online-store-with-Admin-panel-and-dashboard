@@ -8,6 +8,7 @@ import  {googleRouter } from './routes/googleLogin.js'
 import {provRouter} from './routes/providerRouts.js'
 import session from 'express-session';
 import passport from 'passport';
+import { paymentRouter } from "./routes/payment-router.js";
 
 
 
